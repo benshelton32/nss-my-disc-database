@@ -6,7 +6,8 @@ import "./Login.css"
 export const Register = (props) => {
     const [user, setUser] = useState({
         email: "",
-        fullName: "",
+        firstName: "",
+        lastName: ""
     })
     let navigate = useNavigate()
 
@@ -25,7 +26,7 @@ export const Register = (props) => {
                         id: createdUser.id,
                     }))
 
-                    navigate("/")
+                    navigate("/myBag")
                 }
             })
     }
@@ -58,10 +59,16 @@ export const Register = (props) => {
                 <h1 className="h3 mb-3 font-weight-normal">My Disc Database</h1>
                 <h2>Registration</h2>
                 <fieldset>
-                    <label htmlFor="fullName"> Full Name </label>
+                    <label htmlFor="firstName"> First Name </label>
                     <input onChange={updateUser}
-                           type="text" id="fullName" className="form-control"
-                           placeholder="Enter your name.." required autoFocus />
+                           type="text" id="firstName" className="form-control"
+                           placeholder="Enter your first name.." required autoFocus />
+                </fieldset>
+                <fieldset>
+                    <label htmlFor="lastName"> Last Name </label>
+                    <input onChange={updateUser}
+                           type="text" id="lastName" className="form-control"
+                           placeholder="Enter your last name.." required autoFocus />
                 </fieldset>
                 <fieldset>
                     <label htmlFor="email"> Email address </label>

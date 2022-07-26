@@ -11,10 +11,10 @@ export const NavBar = () => {
             </li>
 
             {
-                localStorage.getItem("honey_user")
+                localStorage.getItem("disc_user")
                     ? <li className="navbar__item navbar__logout">
-                        <Link className="navbar__link" to="" onClick={() => {
-                            localStorage.removeItem("honey_user")
+                        <Link className="disc__link" to="" onClick={() => {
+                            localStorage.removeItem("disc_user")
                             navigate("/", {replace: true})
                         }}>Logout</Link>
                     </li>
