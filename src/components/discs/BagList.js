@@ -40,17 +40,6 @@ export const BagList = () => {
         [discs]
     )
 
-    // const matchManufacturer = (disc) => {
-    //     manufacturers.find(manufacturer => {
-    //         if (disc?.disc?.manufacturerId === manufacturer.id) {
-    //             return manufacturer.name
-    //             }
-    //         }
-    //     )
-    // }
-
-    // const manufacturerObj = matchManufacturer(userDisc)
-
     return <>
 
         <h1>{discUserObject.firstName}'s Bag</h1>
@@ -66,17 +55,8 @@ export const BagList = () => {
                                 {userDisc.disc.name}
                             </div>
                             <div className="discManufacturer">
-                                {/* Manufacturer: {`${matchManufacturer(userDisc)}`} */}
-                                Manufacturer: {`
-                                    ${manufacturers.find(manufacturer => {
-                                        if (userDisc.disc.manufacturerId === manufacturer.id) {
-                                            return manufacturer
-                                        }
-                                        return `
-                                            ${manufacturer.name}
-                                        `
-                                        })
-                                    }
+                                {manufacturers.length > 0 && `Manufacturer:
+                                    ${manufacturers.find(manufacturer => userDisc.disc.manufacturerId === manufacturer.id).name}
                                 `}
                             </div>
                             <div className="discWeight">
