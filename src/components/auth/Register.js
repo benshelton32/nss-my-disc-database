@@ -24,6 +24,7 @@ export const Register = (props) => {
                 if (createdUser.hasOwnProperty("id")) {
                     localStorage.setItem("disc_user", JSON.stringify({
                         id: createdUser.id,
+                        firstName: createdUser.firstName                        
                     }))
 
                     navigate("/myBag")
