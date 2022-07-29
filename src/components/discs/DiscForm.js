@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
+import "./DiscForm.css"
 
 
 export const DiscForm = () => {
@@ -107,7 +108,7 @@ export const DiscForm = () => {
             </fieldset>
             {disc.manufacturerId !== 0 && disc.manufacturerId !== "" && <fieldset>
                 <div className="form-group">
-                    <label htmlFor="productType">Model: </label>
+                    <label htmlFor="name">Model: </label>
                     <select
                         value={disc.discId}
                         required
