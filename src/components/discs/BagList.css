@@ -1,3 +1,7 @@
+.userBagHeading {
+    margin-left: 1rem;
+}
+
 .discs {
     display: flex;
     flex-direction: row;
@@ -11,24 +15,39 @@
     flex-wrap: nowrap;
     padding: 0.5rem;
     margin: 0.5rem;
+    border: 1px solid black;
+    border-radius: 15px;
+    background-color: whitesmoke;
 }
 
-.discWeightAndFlightCharacteristics {
+.discFlightCharacteristicsSection {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
+    /* margin-top: 0.5rem; */
+}
+
+.discManufacturerWeightAndNameConatiner {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
 }
 
 .discManufacturerAndName {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: nowrap;
     justify-content: space-between;
 }
 
 .discWeight {
-    margin-right: 0.5rem;
+    /* margin-right: 0.5rem; */
+    padding: 0 0.2rem;
     /* margin-top: 0.5rem; */
+    border: 1px black solid;
+    border-radius: 30px;
 }
 
 .discFlightCharacteristics {
@@ -42,4 +61,23 @@
     margin: 0.25rem;
     padding: 0.25rem;
     border: 1px black solid;
+    border-radius: 15px;
+}
+
+.discManufacturer {
+    font-size: small;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    padding-bottom: 0.25rem;
+}
+
+.discName {
+    font-size: larger;
+    font-weight: bold;
+}
+
+.deleteButton {
+    text-align: right;
+    margin-top: 0.25rem;
 }
