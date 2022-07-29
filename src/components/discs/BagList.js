@@ -36,33 +36,19 @@ export const BagList = () => {
     useEffect(
         () => {
             const myDiscs = discs.filter(disc => disc?.user?.id === discUserObject.id)
+            myDiscs.sort((firstDisc, secondDisc) => {return secondDisc.disc.speed - firstDisc.disc.speed})
             setUsersDiscs(myDiscs)
         },
         [discs]
     )
 
-    const GetUsersDiscs = () => {
+    const getUsersDiscs = () => {
         fetch(`http://localhost:8088/ownedDiscs?_expand=disc&_expand=user&userId=${discUserObject.id}`)
             .then(response => response.json())
             .then((discArray) => {
                 setDiscs(discArray)
             })
     }
-
-
-    // const DeleteButton = () => {
-    //     return <>
-    //         <button onClick={() => {
-    //             fetch(`http://localhost:8088/ownedDiscs?id=${userDisc.id}`, {
-    //                 method: "DELETE"
-    //             })
-    //             .then(() => {
-    //                 const myDiscs = discs.filter(disc => disc.user.id === discUserObject.id)
-    //                 setUsersDiscs(myDiscs)
-    //             })
-    //         }} className="btn btn-secondary">Delete</button>
-    //     </>
-    // }
 
     return <>
 
@@ -113,7 +99,7 @@ export const BagList = () => {
                                         method: "DELETE"
                                     })
                                     .then(() => {
-                                        <GetUsersDiscs />
+                                        getUsersDiscs()
                                     })
                                     }} className="btn btn-secondary">
                                 Delete
