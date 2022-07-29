@@ -3,7 +3,9 @@ import { useNavigate } from "react-router-dom"
 import { Link } from "react-router-dom";
 import "./Login.css"
 
+// invoked on MyDiscDatabase.js
 export const Register = (props) => {
+    // changed properties to reflect ones needed for users
     const [user, setUser] = useState({
         email: "",
         firstName: "",
@@ -22,11 +24,12 @@ export const Register = (props) => {
             .then(res => res.json())
             .then(createdUser => {
                 if (createdUser.hasOwnProperty("id")) {
+                    // changed to disc user and added firstName as object property
                     localStorage.setItem("disc_user", JSON.stringify({
                         id: createdUser.id,
                         firstName: createdUser.firstName                        
                     }))
-
+                    // changed from "/" to "/myBag"
                     navigate("/myBag")
                 }
             })
@@ -59,6 +62,7 @@ export const Register = (props) => {
             <form className="form--login" onSubmit={handleRegister}>
                 <h1 className="h3 mb-3 font-weight-normal">My Disc Database</h1>
                 <h2>Registration</h2>
+                {/* split fullName into firstName and LastName fields/properties */}
                 <fieldset>
                     <label htmlFor="firstName"> First Name </label>
                     <input onChange={updateUser}
