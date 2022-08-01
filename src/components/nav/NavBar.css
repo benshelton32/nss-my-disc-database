@@ -1,7 +1,11 @@
 .navbar {
     display: flex;
     flex-wrap: nowrap;
-    justify-content: left;
+    justify-content: space-between;
+    height: 8rem;
+    /* background-color: #ececec; */
+    background-color: black;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
 .navbar__item {
@@ -11,4 +15,50 @@
 
 .navbar__logout {
     margin-left: auto;
+}
+
+.navbar_brand {
+    width: 50%;
+}
+
+.logo {
+    height: 8rem;
+    margin-left: 40%;
+}
+
+.navbar-right {
+    display: flex;
+    flex-wrap: nowrap;
+    width: 25%;
+}
+
+.navbar__link {
+    width: 100%;
+}
+
+.addDiscButton {
+    background-color: #00bbdd;
+    color: white;
+    border-radius: 5px;
+    font-size: 24px;
+    margin-left: 1rem;
+    border: #00bbdd solid 5px;
+    /* padding: 5px; */
+}
+
+.navbar_icon {
+    height: 5rem;
+}
+.navbar-left {
+    width: 25%;
+}
+
+.navbar_icon_text {
+    color: white;
+    font-weight: bold;
+    padding-left: 0.5rem;
+}
+
+.navbar__link {
+    text-decoration: none;
 }

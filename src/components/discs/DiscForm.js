@@ -159,7 +159,7 @@ export const DiscForm = () => {
             </fieldset>
             <button
                 onClick={(clickEvent) => handleAddDiscButtonClick(clickEvent)}
-                className="btn btn-primary">
+                className="btn btn-info">
                 Add Disc
             </button>
             {/* added a second button 'Cancel' that navigates back to /myBag (BagList) in cases user doesn't want to add a new disc once accessing the form */}
