@@ -119,9 +119,10 @@ export const BagList = () => {
         <article className="sortedDiscs">
 
         {/* used conditional to only display the code if there are discs in the distanceDrivers array */}
-        {distanceDrivers.length > 0 && 
-            <article className="discs">
-                <h2 className="discTypeHeading">Distance Drivers</h2>        
+        {distanceDrivers.length > 0 && <>
+        <h2 className="discTypeHeading">Distance Drivers</h2>  
+            
+            <article className="discs">      
 
                 {/* used .map to iterate through the distanceDrivers array to display the discs that the currently logged in user owns and are categorized as distance drivers */}
                 {
@@ -179,12 +180,14 @@ export const BagList = () => {
                         </>
                     })
                 }
-            </article>}
+            </article>
+            </>}
 
             {/* used conditional to only display the code if there are discs in the fairwayDrivers array */}
-            {fairwayDrivers.length > 0 && 
-            <article className="discs">
-                <h2 className="discTypeHeading">Fairway Drivers</h2>        
+            {fairwayDrivers.length > 0 && <>
+                <h2 className="discTypeHeading">Fairway Drivers</h2>
+                
+                <article className="discs">        
 
                 {/* used .map to iterate through the fairwayDrivers array to display the discs that the currently logged in user owns and are categorized as fairway drivers */}
                 {
@@ -242,12 +245,14 @@ export const BagList = () => {
                         </>
                     })
                 }
-            </article>}
+            </article>
+            </>}
 
             {/* used conditional to only display the code if there are discs in the midRangeDiscs array */}
-            {midRangeDiscs.length > 0 && 
-            <article className="discs">
-                <h2 className="discTypeHeading">Mid-Range</h2>        
+            {midRangeDiscs.length > 0 && <>
+            <h2 className="discTypeHeading">Mid-Range</h2> 
+
+            <article className="discs">       
 
                 {/* used .map to iterate through the midRangeDiscs array to display the discs that the currently logged in user owns and are categorized as mid-range discs */}
                 {
@@ -305,12 +310,14 @@ export const BagList = () => {
                         </>
                     })
                 }
-            </article>}
+            </article>
+            </>}
 
             {/* used conditional to only display the code if there are discs in the putters array */}
-            {putters.length > 0 && 
-            <article className="discs">
-                <h2 className="discTypeHeading">Putt & Approach</h2>        
+            {putters.length > 0 && <>
+            <h2 className="discTypeHeading">Putt & Approach</h2> 
+
+            <article className="discs">        
 
                 {/* used .map to iterate through the putters array to display the discs that the currently logged in user owns and are categorized as putt & approach discs */}
                 {
@@ -368,7 +375,8 @@ export const BagList = () => {
                         </>
                     })
                 }
-            </article>}
+            </article>
+            </>}
         </article>
     </>
 }

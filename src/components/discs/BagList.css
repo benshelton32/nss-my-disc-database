@@ -8,8 +8,8 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-between;
-    
+    justify-content: flex-start;
+    margin: 0 0.5rem;
 }
 
 .disc {
@@ -99,14 +99,14 @@
 }
 
 .discTypeHeading {
-    width: 100%;
+    /* width: 100%; */
     border: 5px solid rgb(248, 144, 231);
     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2);
     color: whitesmoke;
     background-color: black;
     margin: 0.5rem 0.5rem;
     border-radius: 30px;
-    padding: 0.5rem 0.5rem 0.5rem 1.5rem;
+    padding: 0.5rem 0rem 0.5rem 1.5rem;
     font-size: 28px;
 }
 
