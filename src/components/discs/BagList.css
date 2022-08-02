@@ -19,7 +19,7 @@
     border: 5px solid #00bbdd;
     border-radius: 15px;
     background-color: rgba(245, 245, 245, 0.8);
-    height: 163px;
+    height: 186px;
     width: 330px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 8px 0 rgba(0, 0, 0, 0.19);
 }
@@ -73,6 +73,14 @@
 }
 
 .discManufacturer {
+    font-size: small;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    /* padding-bottom: 0.25rem; */
+}
+
+.discPlastic {
     font-size: small;
     display: flex;
     flex-direction: column;
