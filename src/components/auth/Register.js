@@ -58,36 +58,36 @@ export const Register = (props) => {
     }
 
     return (
-        <main style={{ textAlign: "center" }}>
+        <main className="container--login" style={{ textAlign: "center" }}>
             <form className="form--login" onSubmit={handleRegister}>
-                <h1 className="h3 mb-3 font-weight-normal">My Disc Database</h1>
+                <img className="loginLogo" src={process.env.PUBLIC_URL+"/myDiscDatabaseLogo.png"} />
                 <h2>Registration</h2>
                 {/* split fullName into firstName and LastName fields/properties */}
-                <fieldset>
-                    <label htmlFor="firstName"> First Name </label>
+                <fieldset className="labelAndInputField">
+                    <label className="inputLabel" htmlFor="firstName"> First Name </label>
                     <input onChange={updateUser}
                            type="text" id="firstName" className="form-control"
                            placeholder="Enter your first name.." required autoFocus />
                 </fieldset>
-                <fieldset>
-                    <label htmlFor="lastName"> Last Name </label>
+                <fieldset className="labelAndInputField">
+                    <label className="inputLabel" htmlFor="lastName"> Last Name </label>
                     <input onChange={updateUser}
                            type="text" id="lastName" className="form-control"
                            placeholder="Enter your last name.." required autoFocus />
                 </fieldset>
-                <fieldset>
-                    <label htmlFor="email"> Email address </label>
+                <fieldset className="labelAndInputField">
+                    <label className="inputLabel" htmlFor="email"> Email address </label>
                     <input onChange={updateUser}
                         type="email" id="email" className="form-control"
                         placeholder="Enter your email.." required />
                 </fieldset>
-                <fieldset>
-                    <button type="submit"> Register </button>
+                <fieldset className="buttonFieldSet">
+                    <button className="button" type="submit"> Register </button>
                 </fieldset>
             </form>
-            <section className="link--register">
+            <section>
                 <div>Already have an account?</div>
-                <Link to="/login">Log in here</Link>
+                <Link className="hyperlink" to="/login">Log in here</Link>
             </section>
         </main>
     )

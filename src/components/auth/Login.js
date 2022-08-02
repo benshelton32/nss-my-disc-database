@@ -32,12 +32,12 @@ export const Login = () => {
 
     return (
         <main className="container--login">
-            <section>
+            <section className="form--container">
                 <form className="form--login" onSubmit={handleLogin}>
-                    <h1>My Disc Database</h1>
+                    <img className="loginLogo" src={process.env.PUBLIC_URL+"/myDiscDatabaseLogo.png"} />
                     <h2>Please log in</h2>
-                    <fieldset>
-                        <label htmlFor="inputEmail"> Email </label>
+                    <fieldset className="labelAndInputField">
+                        <label className="inputLabel" htmlFor="inputEmail"> Email </label>
                         <input type="email"
                             value={email}
                             onChange={evt => set(evt.target.value)}
@@ -45,8 +45,8 @@ export const Login = () => {
                             placeholder="Please enter your email.."
                             required autoFocus />
                     </fieldset>
-                    <fieldset>
-                        <button type="submit">
+                    <fieldset className="buttonFieldSet">
+                        <button className="button" type="submit">
                             Login
                         </button>
                     </fieldset>
@@ -54,7 +54,7 @@ export const Login = () => {
             </section>
             <section className="link--register">
                 <div>Need an account?</div>
-                <Link to="/register">Sign up here</Link>
+                <Link className="hyperlink" to="/register">Sign up here</Link>
             </section>
         </main>
     )
