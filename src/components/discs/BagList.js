@@ -9,6 +9,7 @@ export const BagList = () => {
     const [discs, setDiscs] = useState([])
     const [usersDiscs, setUsersDiscs] = useState([])
     const [manufacturers, setManufacturers] = useState([])
+    const [plastics, setPlastics] = useState([])
 
     // assign the properties and values stored in disc_user in the localStorage in browser to a variable, which includes id and firstName for the user logged in
     const localDiscUser = localStorage.getItem("disc_user")
@@ -50,6 +51,18 @@ export const BagList = () => {
         [discs] // this useEffect is only triggered when there is a change in the discs array previously defined
     )
 
+    // useEffect to fetch plastics data from JSON and set state for plastics
+    useEffect(
+        () => {
+            fetch("http://localhost:8088/plastics")
+            .then(response => response.json())
+            .then((plasticArray) => {
+                setPlastics(plasticArray)
+            })
+        },
+        [] //empty array means it is observing initial component state
+    )
+
     // Defined a function to run a fetch call that only returns the objects in the ownedDiscs array that have the same userId as the currently logged in user and set the initial disc array with the returned data
     // This will be used in the delete function to trigger the useEffect previously defined to reset the state so the DOM reflects the deletion
     const getUsersDiscs = () => {
@@ -80,6 +93,12 @@ export const BagList = () => {
                                     {/* used conditional so the code only displays after the manufacturers array has fetched the data instead of in its inital empty array state */}
                                     {manufacturers.length > 0 && `Manufacturer:
                                         ${manufacturers.find(manufacturer => userDisc.disc.manufacturerId === manufacturer.id).name}
+                                    `}
+                                </div>
+                                <div className="discPlastic">
+                                    {/* used conditional so the code only displays after the manufacturers array has fetched the data instead of in its inital empty array state */}
+                                    {plastics.length > 0 && `Plastic:
+                                        ${plastics.find(plastic => userDisc.plasticId === plastic.id).name}
                                     `}
                                 </div>
                             </div>

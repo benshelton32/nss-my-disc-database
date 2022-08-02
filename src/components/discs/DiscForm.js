@@ -14,6 +14,8 @@ export const DiscForm = () => {
     const [manufacturers, setManufacturers] = useState([])
     const [discOptions, setDiscOptions] = useState([])
     const [discsFilteredByManufacturer, setFilteredDiscs] = useState([])
+    const [plastics, setPlastics] = useState([])
+    const [plasticsFilteredByManufacturer, setFilteredPlastics] = useState([])
 
     const navigate = useNavigate()
 
@@ -44,15 +46,50 @@ export const DiscForm = () => {
         []
     )
     
-    // useEffect to set state of discFilteredByManufacturer
+    // useEffect to set state of discsFilteredByManufacturer
     // used if conditional state to only run if the manufacturerId on the disc object is a value other than zero or a blank string
     // if conditions are met then discOptions is filtered to only return objects whose manufacturerId is equal to the disc object's manufacturerId
-    // used parseInt to chnage value from stribg to integer for conditional statement
+    // used parseInt to change value from stribg to integer for conditional statement
     useEffect(
         () => {
             if (disc.manufacturerId !== 0 && disc.manufacturerId !== "" ) {
                 const filteredDiscs = discOptions.filter(discOption => discOption.manufacturerId === parseInt(disc.manufacturerId))
+                // used .sort to list disc names in alphabetical order
+                filteredDiscs.sort((firstDisc, secondDisc) => {
+                    if (firstDisc.name < secondDisc.name) {
+                    return -1;
+                    }
+                    if (firstDisc.name > secondDisc.name) {
+                        return 1;
+                    }
+                    return 0;})
                 setFilteredDiscs(filteredDiscs)
+            }
+        },
+        [disc] //useEffect is only triggered if there is a change to the disc variable
+    )
+
+    // useEffect to fetch plastics data from JSON and set state for plastics
+    useEffect(
+        () => {
+            fetch("http://localhost:8088/plastics")
+            .then(response => response.json())
+            .then((plasticArray) => {
+                setPlastics(plasticArray)
+            })
+        },
+        [] //empty array means it is observing initial component state
+    )
+
+    // useEffect to set state of plasticFilteredByManufacturer
+    // used if conditional state to only run if the manufacturerId on the disc object is a value other than zero or a blank string
+    // if conditions are met then discOptions is filtered to only return objects whose manufacturerId is equal to the disc object's manufacturerId
+    // used parseInt to change value from stribg to integer for conditional statement
+    useEffect(
+        () => {
+            if (disc.manufacturerId !== 0 && disc.manufacturerId !== "" ) {
+                const filteredPlastics = plastics.filter(plastic => plastic.manufacturerId === parseInt(disc.manufacturerId))
+                setFilteredPlastics(filteredPlastics)
             }
         },
         [disc] //useEffect is only triggered if there is a change to the disc variable
@@ -67,6 +104,7 @@ export const DiscForm = () => {
         const discToSendToAPI = {
             userId: discUserObject.id,
             discId: parseInt(disc.discId),
+            plasticId: parseInt(disc.plasticId),
             weight: parseInt(disc.weight)
         }
 
@@ -113,7 +151,7 @@ export const DiscForm = () => {
                     </select>
                 </div>
             </fieldset>
-            {/* used conditional to only display field if the disc object's manufacturerId is not zero or an empty array, menaing it should only display once a manufacturer is selected */}
+            {/* used conditional to only display field if the disc object's manufacturerId is not zero or an empty array, meaning it should only display once a manufacturer is selected */}
             {disc.manufacturerId !== 0 && disc.manufacturerId !== "" && <fieldset>
                 <div className="form-group">
                     <label htmlFor="name">Model: </label>
@@ -133,6 +171,32 @@ export const DiscForm = () => {
                             discsFilteredByManufacturer.map(discFilteredByManufacturer => {
                                             return  <>
                                                 <option key={`disc--${discFilteredByManufacturer.id}`} value={discFilteredByManufacturer.id}>{discFilteredByManufacturer.name}</option>
+                                            </>
+                                            })
+                            }
+                    </select>
+                </div>
+            </fieldset>}
+            {/* used conditional to only display field if the disc object's manufacturerId is not zero or an empty array, meaning it should only display once a manufacturer is selected */}
+            {disc.manufacturerId !== 0 && disc.manufacturerId !== "" && <fieldset>
+                <div className="form-group">
+                    <label htmlFor="plastic">Plastic: </label>
+                    <select
+                        value={disc.plasticId}
+                        required
+                        className="form-control"
+                        onChange={
+                            (event) => {
+                                const copy = {...disc}
+                                copy.plasticId = event.target.value
+                                update(copy)
+                            }
+                        }>
+                            <option value="">Select plastic...</option>
+                            {
+                            plasticsFilteredByManufacturer.map(plasticFilteredByManufacturer => {
+                                            return  <>
+                                                <option key={`plastic--${plasticFilteredByManufacturer.id}`} value={plasticFilteredByManufacturer.id}>{plasticFilteredByManufacturer.name}</option>
                                             </>
                                             })
                             }
