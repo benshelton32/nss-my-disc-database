@@ -3,9 +3,9 @@
     flex-wrap: nowrap;
     justify-content: space-between;
     height: 8rem;
-    /* background-color: #ececec; */
-    background-color: black;
+    background-color: #060606;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    padding: 0 1rem;
 }
 
 .navbar__item {

@@ -8,7 +8,9 @@ export const DiscForm = () => {
     const [disc, update] = useState({
         manufacturerId: "",
         discId: "",
-        weight: ""
+        weight: "",
+        discColor: "#f890e7",
+        stampColor: "#000000"
     })
 
     const [manufacturers, setManufacturers] = useState([])
@@ -105,7 +107,9 @@ export const DiscForm = () => {
             userId: discUserObject.id,
             discId: parseInt(disc.discId),
             plasticId: parseInt(disc.plasticId),
-            weight: parseInt(disc.weight)
+            weight: parseInt(disc.weight),
+            discColor: disc.discColor,
+            stampColor: disc.stampColor
         }
 
         // fetch call to post the previosly defined object variable to the JSON database as an OwnedDisc
@@ -216,6 +220,42 @@ export const DiscForm = () => {
                             (event) => {
                                 const copy = {...disc}
                                 copy.weight = event.target.value
+                                update(copy)
+                            }
+                        } />
+                </div>
+            </fieldset>
+            <fieldset>
+                <div className="form-group">
+                    <label htmlFor="discColor"> Disc Color:</label>
+                    <input
+                        required
+                        type="color"
+                        className="form-control"
+                        placeholder="Choose disc color.."
+                        value={disc.discColor}
+                        onChange={
+                            (event) => {
+                                const copy = {...disc}
+                                copy.discColor = event.target.value
+                                update(copy)
+                            }
+                        } />
+                </div>
+            </fieldset>
+            <fieldset>
+                <div className="form-group">
+                    <label htmlFor="discColor"> Stamp or Secondary Color:</label>
+                    <input
+                        required
+                        type="color"
+                        className="form-control"
+                        placeholder="Choose disc color.."
+                        value={disc.stampColor}
+                        onChange={
+                            (event) => {
+                                const copy = {...disc}
+                                copy.stampColor = event.target.value
                                 update(copy)
                             }
                         } />
