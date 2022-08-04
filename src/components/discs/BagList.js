@@ -129,53 +129,64 @@ export const BagList = () => {
                     distanceDrivers.map(distanceDriver => {
                         return <>                        
                             <section className="disc" key={`disc--${distanceDriver.id}`}>
-                                <header className="discManufacturerWeightAndNameConatiner">
-                                    <div className="discManufacturerAndName">
-                                        <div className="discName">
-                                            {distanceDriver.disc.name}
-                                        </div>
-                                        <div className="discManufacturer">
-                                            {/* used conditional so the code only displays after the manufacturers array has fetched the data instead of in its inital empty array state */}
-                                            {manufacturers.length > 0 && `Manufacturer:
-                                                ${manufacturers.find(manufacturer => distanceDriver.disc.manufacturerId === manufacturer.id).name}
-                                            `}
-                                        </div>
-                                        <div className="discPlastic">
-                                            {/* used conditional so the code only displays after the manufacturers array has fetched the data instead of in its inital empty array state */}
-                                            {plastics.length > 0 && `Plastic:
-                                                ${plastics.find(plastic => distanceDriver.plasticId === plastic.id).name}
-                                            `}
-                                        </div>
+                                <aside className="discColorSection">
+                                    <div className="discRepresentation">
+                                        {/* used empty spans and inline styling to give visual representation of the disc with they disc color and stamp(or secondary, if not stamped) color */}
+                                        <span className="discColor" style={{backgroundColor: `${distanceDriver.discColor}`} }>
+                                            <span className="stampColor"style={{borderColor: `${distanceDriver.stampColor}`} }></span>
+                                        </span>
                                     </div>
-                                    <div className="discWeightContainer">
-                                        <div className="discWeight">
-                                        {distanceDriver.weight} g 
-                                        </div>
+                                    <div className="discPlastic">
+                                            {/* used conditional so the code only displays after the manufacturers array has fetched the data instead of in its inital empty array state */}
+                                            <div className="plasticHeading">Plastic:</div>
+                                            {plastics.length > 0 && 
+                                                <div className="plasticName">{plastics.find(plastic => distanceDriver.plasticId === plastic.id).name}
+                                            </div>}
                                     </div>
-                                </header>
-                                
-                                <section className="discFlightCharacteristics">
-                                    {/* used Math.round() to round to nearest integer */}
-                                    <div className="individualDiscFlightCharacteristics">Speed: {Math.round(distanceDriver.disc.speed)}</div>
-                                    <div className="individualDiscFlightCharacteristics">Glide: {Math.round(distanceDriver.disc.glide)}</div>
-                                    <div className="individualDiscFlightCharacteristics">Turn: {Math.round(distanceDriver.disc.turn)}</div>
-                                    <div className="individualDiscFlightCharacteristics">Fade: {Math.round(distanceDriver.disc.fade)}</div>
-                                </section>
+                                </aside>
+                                <section className="discInformation">
+                                    <header className="discManufacturerWeightAndNameConatiner">
+                                        <div className="discManufacturerAndName">
+                                            <div className="discName">
+                                                {distanceDriver.disc.name}
+                                            </div>
+                                            <div className="discManufacturer">
+                                                {/* used conditional so the code only displays after the manufacturers array has fetched the data instead of in its inital empty array state */}
+                                                {manufacturers.length > 0 && `Manufacturer:
+                                                    ${manufacturers.find(manufacturer => distanceDriver.disc.manufacturerId === manufacturer.id).name}
+                                                `}
+                                            </div>
+                                        </div>
+                                        <div className="discWeightContainer">
+                                            <div className="discWeight">
+                                            {distanceDriver.weight} g 
+                                            </div>
+                                        </div>
+                                    </header>
+                                    
+                                    <section className="discFlightCharacteristics">
+                                        {/* used Math.round() to round to nearest integer */}
+                                        <div className="individualDiscFlightCharacteristics">Speed: {Math.round(distanceDriver.disc.speed)}</div>
+                                        <div className="individualDiscFlightCharacteristics">Glide: {Math.round(distanceDriver.disc.glide)}</div>
+                                        <div className="individualDiscFlightCharacteristics">Turn: {Math.round(distanceDriver.disc.turn)}</div>
+                                        <div className="individualDiscFlightCharacteristics">Fade: {Math.round(distanceDriver.disc.fade)}</div>
+                                    </section>
 
-                                {/* when clicking the button, a fetch call occurs to delete the entry in the ownedDiscs array that matches the selected discs id 
-                                used .then() to invoke the previously defined function to run a new fetch call and cause the useEffect that sets userDiscs to trigger*/}
-                                <footer className="deleteButton">
-                                    <button onClick={() => {
-                                            fetch(`http://localhost:8088/ownedDiscs/${distanceDriver.id}`, {
-                                                method: "DELETE"
-                                            })
-                                            .then(() => {
-                                                getUsersDiscs()
-                                            })
-                                            }} className="btn btn-secondary">
-                                        Delete
-                                    </button>
-                                </footer>
+                                    {/* when clicking the button, a fetch call occurs to delete the entry in the ownedDiscs array that matches the selected discs id 
+                                    used .then() to invoke the previously defined function to run a new fetch call and cause the useEffect that sets userDiscs to trigger*/}
+                                    <footer className="deleteButton">
+                                        <button onClick={() => {
+                                                fetch(`http://localhost:8088/ownedDiscs/${distanceDriver.id}`, {
+                                                    method: "DELETE"
+                                                })
+                                                .then(() => {
+                                                    getUsersDiscs()
+                                                })
+                                                }} className="btn btn-secondary">
+                                            Delete
+                                        </button>
+                                    </footer>
+                                </section>
                             </section>
                         </>
                     })
@@ -194,53 +205,64 @@ export const BagList = () => {
                     fairwayDrivers.map(fairwayDriver => {
                         return <>                        
                             <section className="disc" key={`disc--${fairwayDriver.id}`}>
-                                <header className="discManufacturerWeightAndNameConatiner">
-                                    <div className="discManufacturerAndName">
-                                        <div className="discName">
-                                            {fairwayDriver.disc.name}
-                                        </div>
-                                        <div className="discManufacturer">
-                                            {/* used conditional so the code only displays after the manufacturers array has fetched the data instead of in its inital empty array state */}
-                                            {manufacturers.length > 0 && `Manufacturer:
-                                                ${manufacturers.find(manufacturer => fairwayDriver.disc.manufacturerId === manufacturer.id).name}
-                                            `}
-                                        </div>
-                                        <div className="discPlastic">
-                                            {/* used conditional so the code only displays after the manufacturers array has fetched the data instead of in its inital empty array state */}
-                                            {plastics.length > 0 && `Plastic:
-                                                ${plastics.find(plastic => fairwayDriver.plasticId === plastic.id).name}
-                                            `}
-                                        </div>
+                                <aside className="discColorSection">
+                                    <div className="discRepresentation">
+                                        {/* used empty spans and inline styling to give visual representation of the disc with they disc color and stamp(or secondary, if not stamped) color */}
+                                        <span className="discColor" style={{backgroundColor: `${fairwayDriver.discColor}`} }>
+                                            <span className="stampColor"style={{borderColor: `${fairwayDriver.stampColor}`} }></span>
+                                        </span>
                                     </div>
-                                    <div className="discWeightContainer">
-                                        <div className="discWeight">
-                                        {fairwayDriver.weight} g 
-                                        </div>
+                                    <div className="discPlastic">
+                                            {/* used conditional so the code only displays after the manufacturers array has fetched the data instead of in its inital empty array state */}
+                                            <div className="plasticHeading">Plastic:</div>
+                                            {plastics.length > 0 && 
+                                                <div className="plasticName">{plastics.find(plastic => fairwayDriver.plasticId === plastic.id).name}
+                                            </div>}
                                     </div>
-                                </header>
-                                
-                                <section className="discFlightCharacteristics">
-                                    {/* used Math.round() to round to nearest integer */}
-                                    <div className="individualDiscFlightCharacteristics">Speed: {Math.round(fairwayDriver.disc.speed)}</div>
-                                    <div className="individualDiscFlightCharacteristics">Glide: {Math.round(fairwayDriver.disc.glide)}</div>
-                                    <div className="individualDiscFlightCharacteristics">Turn: {Math.round(fairwayDriver.disc.turn)}</div>
-                                    <div className="individualDiscFlightCharacteristics">Fade: {Math.round(fairwayDriver.disc.fade)}</div>
-                                </section>
+                                </aside>
+                                <section className="discInformation">
+                                    <header className="discManufacturerWeightAndNameConatiner">
+                                        <div className="discManufacturerAndName">
+                                            <div className="discName">
+                                                {fairwayDriver.disc.name}
+                                            </div>
+                                            <div className="discManufacturer">
+                                                {/* used conditional so the code only displays after the manufacturers array has fetched the data instead of in its inital empty array state */}
+                                                {manufacturers.length > 0 && `Manufacturer:
+                                                    ${manufacturers.find(manufacturer => fairwayDriver.disc.manufacturerId === manufacturer.id).name}
+                                                `}
+                                            </div>
+                                        </div>
+                                        <div className="discWeightContainer">
+                                            <div className="discWeight">
+                                            {fairwayDriver.weight} g 
+                                            </div>
+                                        </div>
+                                    </header>
+                                    
+                                    <section className="discFlightCharacteristics">
+                                        {/* used Math.round() to round to nearest integer */}
+                                        <div className="individualDiscFlightCharacteristics">Speed: {Math.round(fairwayDriver.disc.speed)}</div>
+                                        <div className="individualDiscFlightCharacteristics">Glide: {Math.round(fairwayDriver.disc.glide)}</div>
+                                        <div className="individualDiscFlightCharacteristics">Turn: {Math.round(fairwayDriver.disc.turn)}</div>
+                                        <div className="individualDiscFlightCharacteristics">Fade: {Math.round(fairwayDriver.disc.fade)}</div>
+                                    </section>
 
-                                {/* when clicking the button, a fetch call occurs to delete the entry in the ownedDiscs array that matches the selected discs id 
-                                used .then() to invoke the previously defined function to run a new fetch call and cause the useEffect that sets userDiscs to trigger*/}
-                                <footer className="deleteButton">
-                                    <button onClick={() => {
-                                            fetch(`http://localhost:8088/ownedDiscs/${fairwayDriver.id}`, {
-                                                method: "DELETE"
-                                            })
-                                            .then(() => {
-                                                getUsersDiscs()
-                                            })
-                                            }} className="btn btn-secondary">
-                                        Delete
-                                    </button>
-                                </footer>
+                                    {/* when clicking the button, a fetch call occurs to delete the entry in the ownedDiscs array that matches the selected discs id 
+                                    used .then() to invoke the previously defined function to run a new fetch call and cause the useEffect that sets userDiscs to trigger*/}
+                                    <footer className="deleteButton">
+                                        <button onClick={() => {
+                                                fetch(`http://localhost:8088/ownedDiscs/${fairwayDriver.id}`, {
+                                                    method: "DELETE"
+                                                })
+                                                .then(() => {
+                                                    getUsersDiscs()
+                                                })
+                                                }} className="btn btn-secondary">
+                                            Delete
+                                        </button>
+                                    </footer>
+                                </section>
                             </section>
                         </>
                     })
@@ -259,53 +281,64 @@ export const BagList = () => {
                     midRangeDiscs.map(midRangeDisc => {
                         return <>                        
                             <section className="disc" key={`disc--${midRangeDisc.id}`}>
-                                <header className="discManufacturerWeightAndNameConatiner">
-                                    <div className="discManufacturerAndName">
-                                        <div className="discName">
-                                            {midRangeDisc.disc.name}
-                                        </div>
-                                        <div className="discManufacturer">
-                                            {/* used conditional so the code only displays after the manufacturers array has fetched the data instead of in its inital empty array state */}
-                                            {manufacturers.length > 0 && `Manufacturer:
-                                                ${manufacturers.find(manufacturer => midRangeDisc.disc.manufacturerId === manufacturer.id).name}
-                                            `}
-                                        </div>
-                                        <div className="discPlastic">
-                                            {/* used conditional so the code only displays after the manufacturers array has fetched the data instead of in its inital empty array state */}
-                                            {plastics.length > 0 && `Plastic:
-                                                ${plastics.find(plastic => midRangeDisc.plasticId === plastic.id).name}
-                                            `}
-                                        </div>
+                                <aside className="discColorSection">
+                                    <div className="discRepresentation">
+                                        {/* used empty spans and inline styling to give visual representation of the disc with they disc color and stamp(or secondary, if not stamped) color */}
+                                        <span className="discColor" style={{backgroundColor: `${midRangeDisc.discColor}`} }>
+                                            <span className="stampColor"style={{borderColor: `${midRangeDisc.stampColor}`} }></span>
+                                        </span>
                                     </div>
-                                    <div className="discWeightContainer">
-                                        <div className="discWeight">
-                                        {midRangeDisc.weight} g 
-                                        </div>
+                                    <div className="discPlastic">
+                                        {/* used conditional so the code only displays after the manufacturers array has fetched the data instead of in its inital empty array state */}
+                                        <div className="plasticHeading">Plastic:</div>
+                                            {plastics.length > 0 && 
+                                               <div className="plasticName">{plastics.find(plastic => midRangeDisc.plasticId === plastic.id).name}
+                                            </div>}
                                     </div>
-                                </header>
-                                
-                                <section className="discFlightCharacteristics">
-                                    {/* used Math.round() to round to nearest integer */}
-                                    <div className="individualDiscFlightCharacteristics">Speed: {Math.round(midRangeDisc.disc.speed)}</div>
-                                    <div className="individualDiscFlightCharacteristics">Glide: {Math.round(midRangeDisc.disc.glide)}</div>
-                                    <div className="individualDiscFlightCharacteristics">Turn: {Math.round(midRangeDisc.disc.turn)}</div>
-                                    <div className="individualDiscFlightCharacteristics">Fade: {Math.round(midRangeDisc.disc.fade)}</div>
-                                </section>
+                                </aside>
+                                <section className="discInformation">
+                                    <header className="discManufacturerWeightAndNameConatiner">
+                                        <div className="discManufacturerAndName">
+                                            <div className="discName">
+                                                {midRangeDisc.disc.name}
+                                            </div>
+                                            <div className="discManufacturer">
+                                                {/* used conditional so the code only displays after the manufacturers array has fetched the data instead of in its inital empty array state */}
+                                                {manufacturers.length > 0 && `Manufacturer:
+                                                    ${manufacturers.find(manufacturer => midRangeDisc.disc.manufacturerId === manufacturer.id).name}
+                                                `}
+                                            </div>
+                                        </div>
+                                        <div className="discWeightContainer">
+                                            <div className="discWeight">
+                                            {midRangeDisc.weight} g 
+                                            </div>
+                                        </div>
+                                    </header>
+                                    
+                                    <section className="discFlightCharacteristics">
+                                        {/* used Math.round() to round to nearest integer */}
+                                        <div className="individualDiscFlightCharacteristics">Speed: {Math.round(midRangeDisc.disc.speed)}</div>
+                                        <div className="individualDiscFlightCharacteristics">Glide: {Math.round(midRangeDisc.disc.glide)}</div>
+                                        <div className="individualDiscFlightCharacteristics">Turn: {Math.round(midRangeDisc.disc.turn)}</div>
+                                        <div className="individualDiscFlightCharacteristics">Fade: {Math.round(midRangeDisc.disc.fade)}</div>
+                                    </section>
 
-                                {/* when clicking the button, a fetch call occurs to delete the entry in the ownedDiscs array that matches the selected discs id 
-                                used .then() to invoke the previously defined function to run a new fetch call and cause the useEffect that sets userDiscs to trigger*/}
-                                <footer className="deleteButton">
-                                    <button onClick={() => {
-                                            fetch(`http://localhost:8088/ownedDiscs/${midRangeDisc.id}`, {
-                                                method: "DELETE"
-                                            })
-                                            .then(() => {
-                                                getUsersDiscs()
-                                            })
-                                            }} className="btn btn-secondary">
-                                        Delete
-                                    </button>
-                                </footer>
+                                    {/* when clicking the button, a fetch call occurs to delete the entry in the ownedDiscs array that matches the selected discs id 
+                                    used .then() to invoke the previously defined function to run a new fetch call and cause the useEffect that sets userDiscs to trigger*/}
+                                    <footer className="deleteButton">
+                                        <button onClick={() => {
+                                                fetch(`http://localhost:8088/ownedDiscs/${midRangeDisc.id}`, {
+                                                    method: "DELETE"
+                                                })
+                                                .then(() => {
+                                                    getUsersDiscs()
+                                                })
+                                                }} className="btn btn-secondary">
+                                            Delete
+                                        </button>
+                                    </footer>
+                                </section>
                             </section>
                         </>
                     })
@@ -324,53 +357,64 @@ export const BagList = () => {
                     putters.map(putter => {
                         return <>                        
                             <section className="disc" key={`disc--${putter.id}`}>
-                                <header className="discManufacturerWeightAndNameConatiner">
-                                    <div className="discManufacturerAndName">
-                                        <div className="discName">
-                                            {putter.disc.name}
-                                        </div>
-                                        <div className="discManufacturer">
-                                            {/* used conditional so the code only displays after the manufacturers array has fetched the data instead of in its inital empty array state */}
-                                            {manufacturers.length > 0 && `Manufacturer:
-                                                ${manufacturers.find(manufacturer => putter.disc.manufacturerId === manufacturer.id).name}
-                                            `}
-                                        </div>
-                                        <div className="discPlastic">
-                                            {/* used conditional so the code only displays after the manufacturers array has fetched the data instead of in its inital empty array state */}
-                                            {plastics.length > 0 && `Plastic:
-                                                ${plastics.find(plastic => putter.plasticId === plastic.id).name}
-                                            `}
-                                        </div>
+                                <aside className="discColorSection">
+                                    <div className="discRepresentation">
+                                        {/* used empty spans and inline styling to give visual representation of the disc with they disc color and stamp(or secondary, if not stamped) color */}
+                                        <span className="discColor" style={{backgroundColor: `${putter.discColor}`} }>
+                                            <span className="stampColor"style={{borderColor: `${putter.stampColor}`} }></span>
+                                        </span>
                                     </div>
-                                    <div className="discWeightContainer">
-                                        <div className="discWeight">
-                                        {putter.weight} g 
-                                        </div>
+                                    <div className="discPlastic">
+                                        {/* used conditional so the code only displays after the manufacturers array has fetched the data instead of in its inital empty array state */}
+                                        <div className="plasticHeading">Plastic:</div>
+                                            {plastics.length > 0 && 
+                                               <div className="plasticName">{plastics.find(plastic => putter.plasticId === plastic.id).name}
+                                            </div>}
                                     </div>
-                                </header>
-                                
-                                <section className="discFlightCharacteristics">
-                                    {/* used Math.round() to round to nearest integer */}
-                                    <div className="individualDiscFlightCharacteristics">Speed: {Math.round(putter.disc.speed)}</div>
-                                    <div className="individualDiscFlightCharacteristics">Glide: {Math.round(putter.disc.glide)}</div>
-                                    <div className="individualDiscFlightCharacteristics">Turn: {Math.round(putter.disc.turn)}</div>
-                                    <div className="individualDiscFlightCharacteristics">Fade: {Math.round(putter.disc.fade)}</div>
-                                </section>
+                                </aside>
+                                <section className="discInformation">
+                                    <header className="discManufacturerWeightAndNameConatiner">
+                                        <div className="discManufacturerAndName">
+                                            <div className="discName">
+                                                {putter.disc.name}
+                                            </div>
+                                            <div className="discManufacturer">
+                                                {/* used conditional so the code only displays after the manufacturers array has fetched the data instead of in its inital empty array state */}
+                                                {manufacturers.length > 0 && `Manufacturer:
+                                                    ${manufacturers.find(manufacturer => putter.disc.manufacturerId === manufacturer.id).name}
+                                                `}
+                                            </div>
+                                        </div>
+                                        <div className="discWeightContainer">
+                                            <div className="discWeight">
+                                            {putter.weight} g 
+                                            </div>
+                                        </div>
+                                    </header>
+                                    
+                                    <section className="discFlightCharacteristics">
+                                        {/* used Math.round() to round to nearest integer */}
+                                        <div className="individualDiscFlightCharacteristics">Speed: {Math.round(putter.disc.speed)}</div>
+                                        <div className="individualDiscFlightCharacteristics">Glide: {Math.round(putter.disc.glide)}</div>
+                                        <div className="individualDiscFlightCharacteristics">Turn: {Math.round(putter.disc.turn)}</div>
+                                        <div className="individualDiscFlightCharacteristics">Fade: {Math.round(putter.disc.fade)}</div>
+                                    </section>
 
-                                {/* when clicking the button, a fetch call occurs to delete the entry in the ownedDiscs array that matches the selected discs id 
-                                used .then() to invoke the previously defined function to run a new fetch call and cause the useEffect that sets userDiscs to trigger*/}
-                                <footer className="deleteButton">
-                                    <button onClick={() => {
-                                            fetch(`http://localhost:8088/ownedDiscs/${putter.id}`, {
-                                                method: "DELETE"
-                                            })
-                                            .then(() => {
-                                                getUsersDiscs()
-                                            })
-                                            }} className="btn btn-secondary">
-                                        Delete
-                                    </button>
-                                </footer>
+                                    {/* when clicking the button, a fetch call occurs to delete the entry in the ownedDiscs array that matches the selected discs id 
+                                    used .then() to invoke the previously defined function to run a new fetch call and cause the useEffect that sets userDiscs to trigger*/}
+                                    <footer className="deleteButton">
+                                        <button onClick={() => {
+                                                fetch(`http://localhost:8088/ownedDiscs/${putter.id}`, {
+                                                    method: "DELETE"
+                                                })
+                                                .then(() => {
+                                                    getUsersDiscs()
+                                                })
+                                                }} className="btn btn-secondary">
+                                            Delete
+                                        </button>
+                                    </footer>
+                                </section>
                             </section>
                         </>
                     })

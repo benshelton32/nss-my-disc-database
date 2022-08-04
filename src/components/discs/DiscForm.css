@@ -1,9 +1,7 @@
 .discForm {
     padding: 1rem;
     margin: 1rem;
-    /* background-color: whitesmoke; */
     border-radius: 15px;
-    /* border: 3px solid #00bbdd; */
 }
 
 .btn {
@@ -14,4 +12,8 @@
     background-color: #00bbdd;
     border: #00bbdd solid 1px;
     color: white;
+}
+
+.form-control {
+    width: 250px;
 }
