@@ -137,6 +137,7 @@ export const DiscForm = () => {
                         value={disc.maufacturerId}
                         required autoFocus
                         className="form-control"
+                        id="discFormControl"
                         onChange={
                             (event) => {
                                 const copy = {...disc}
@@ -163,6 +164,7 @@ export const DiscForm = () => {
                         value={disc.discId}
                         required
                         className="form-control"
+                        id="discFormControl"
                         onChange={
                             (event) => {
                                 const copy = {...disc}
@@ -189,6 +191,7 @@ export const DiscForm = () => {
                         value={disc.plasticId}
                         required
                         className="form-control"
+                        id="discFormControl"
                         onChange={
                             (event) => {
                                 const copy = {...disc}
@@ -214,6 +217,7 @@ export const DiscForm = () => {
                         required
                         type="number"
                         className="form-control"
+                        id="discFormControl"
                         placeholder="Enter disc weight.."
                         value={disc.weight}
                         onChange={
@@ -232,6 +236,7 @@ export const DiscForm = () => {
                         required
                         type="color"
                         className="form-control"
+                        id="discFormControl"
                         placeholder="Choose disc color.."
                         value={disc.discColor}
                         onChange={
@@ -250,6 +255,7 @@ export const DiscForm = () => {
                         required
                         type="color"
                         className="form-control"
+                        id="discFormControl"
                         placeholder="Choose disc color.."
                         value={disc.stampColor}
                         onChange={
