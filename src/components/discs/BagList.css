@@ -114,6 +114,7 @@
 .deleteButton {
     text-align: right;
     margin-top: 0.25rem;
+    margin-right: 0.25rem;
 }
 
 .discTypeHeading {
