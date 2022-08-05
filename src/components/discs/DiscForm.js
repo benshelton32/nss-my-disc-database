@@ -128,155 +128,159 @@ export const DiscForm = () => {
         }
     
     return (
-        <form className="discForm">
-            <h2 className="discForm__title">Add a New Disc</h2>
-            <fieldset>
-                <div className="form-group">
-                    <label htmlFor="manufacturer">Manufacturer: </label>
-                    <select
-                        value={disc.maufacturerId}
-                        required autoFocus
-                        className="form-control"
-                        id="discFormControl"
-                        onChange={
-                            (event) => {
-                                const copy = {...disc}
-                                copy.manufacturerId = event.target.value
-                                update(copy)
-                            }
-                        }>
-                            <option value="">Select manufacturer...</option>
-                            {
-                                manufacturers.map(manufacturer => {
-                                    return <>
-                                        <option key={`manufacturer--${manufacturer.id}`} value={manufacturer.id}>{manufacturer.name}</option>
-                                    </>
-                                })
-                            }
-                    </select>
+        <article className="discFormContainer">
+            <form className="discForm">
+                <h2 className="discForm__title">Add a New Disc</h2>
+                <fieldset>
+                    <div className="form-group">
+                        <label htmlFor="manufacturer">Manufacturer: </label>
+                        <select
+                            value={disc.maufacturerId}
+                            required autoFocus
+                            className="form-control"
+                            id="discFormControl"
+                            onChange={
+                                (event) => {
+                                    const copy = {...disc}
+                                    copy.manufacturerId = event.target.value
+                                    update(copy)
+                                }
+                            }>
+                                <option value="">Select manufacturer...</option>
+                                {
+                                    manufacturers.map(manufacturer => {
+                                        return <>
+                                            <option key={`manufacturer--${manufacturer.id}`} value={manufacturer.id}>{manufacturer.name}</option>
+                                        </>
+                                    })
+                                }
+                        </select>
+                    </div>
+                </fieldset>
+                {/* used conditional to only display field if the disc object's manufacturerId is not zero or an empty array, meaning it should only display once a manufacturer is selected */}
+                {disc.manufacturerId !== 0 && disc.manufacturerId !== "" && <fieldset>
+                    <div className="form-group">
+                        <label htmlFor="name">Model: </label>
+                        <select
+                            value={disc.discId}
+                            required
+                            className="form-control"
+                            id="discFormControl"
+                            onChange={
+                                (event) => {
+                                    const copy = {...disc}
+                                    copy.discId = event.target.value
+                                    update(copy)
+                                }
+                            }>
+                                <option value="">Select disc...</option>
+                                {
+                                discsFilteredByManufacturer.map(discFilteredByManufacturer => {
+                                                return  <>
+                                                    <option key={`disc--${discFilteredByManufacturer.id}`} value={discFilteredByManufacturer.id}>{discFilteredByManufacturer.name}</option>
+                                                </>
+                                                })
+                                }
+                        </select>
+                    </div>
+                </fieldset>}
+                {/* used conditional to only display field if the disc object's manufacturerId is not zero or an empty array, meaning it should only display once a manufacturer is selected */}
+                {disc.manufacturerId !== 0 && disc.manufacturerId !== "" && <fieldset>
+                    <div className="form-group">
+                        <label htmlFor="plastic">Plastic: </label>
+                        <select
+                            value={disc.plasticId}
+                            required
+                            className="form-control"
+                            id="discFormControl"
+                            onChange={
+                                (event) => {
+                                    const copy = {...disc}
+                                    copy.plasticId = event.target.value
+                                    update(copy)
+                                }
+                            }>
+                                <option value="">Select plastic...</option>
+                                {
+                                plasticsFilteredByManufacturer.map(plasticFilteredByManufacturer => {
+                                                return  <>
+                                                    <option key={`plastic--${plasticFilteredByManufacturer.id}`} value={plasticFilteredByManufacturer.id}>{plasticFilteredByManufacturer.name}</option>
+                                                </>
+                                                })
+                                }
+                        </select>
+                    </div>
+                </fieldset>}
+                <fieldset>
+                    <div className="form-group">
+                        <label htmlFor="weight">Weight(g):</label>
+                        <input
+                            required
+                            type="number"
+                            className="form-control"
+                            id="discFormControl"
+                            placeholder="Enter disc weight.."
+                            value={disc.weight}
+                            onChange={
+                                (event) => {
+                                    const copy = {...disc}
+                                    copy.weight = event.target.value
+                                    update(copy)
+                                }
+                            } />
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <div className="form-group">
+                        <label htmlFor="discColor"> Disc Color:</label>
+                        <input
+                            required
+                            type="color"
+                            className="form-control"
+                            id="discFormControl"
+                            placeholder="Choose disc color.."
+                            value={disc.discColor}
+                            onChange={
+                                (event) => {
+                                    const copy = {...disc}
+                                    copy.discColor = event.target.value
+                                    update(copy)
+                                }
+                            } />
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <div className="form-group">
+                        <label htmlFor="discColor"> Stamp or Secondary Color:</label>
+                        <input
+                            required
+                            type="color"
+                            className="form-control"
+                            id="discFormControl"
+                            placeholder="Choose disc color.."
+                            value={disc.stampColor}
+                            onChange={
+                                (event) => {
+                                    const copy = {...disc}
+                                    copy.stampColor = event.target.value
+                                    update(copy)
+                                }
+                            } />
+                    </div>
+                </fieldset>
+                <div className="buttonRow">
+                <button
+                    onClick={(clickEvent) => handleAddDiscButtonClick(clickEvent)}
+                    className="btn btn-info">
+                    Add Disc
+                </button>
+                {/* added a second button 'Cancel' that navigates back to /myBag (BagList) in cases user doesn't want to add a new disc once accessing the form */}
+                <button
+                    onClick={() => navigate("/mybag")}
+                    className="btn btn-secondary">
+                Cancel</button>
                 </div>
-            </fieldset>
-            {/* used conditional to only display field if the disc object's manufacturerId is not zero or an empty array, meaning it should only display once a manufacturer is selected */}
-            {disc.manufacturerId !== 0 && disc.manufacturerId !== "" && <fieldset>
-                <div className="form-group">
-                    <label htmlFor="name">Model: </label>
-                    <select
-                        value={disc.discId}
-                        required
-                        className="form-control"
-                        id="discFormControl"
-                        onChange={
-                            (event) => {
-                                const copy = {...disc}
-                                copy.discId = event.target.value
-                                update(copy)
-                            }
-                        }>
-                            <option value="">Select disc...</option>
-                            {
-                            discsFilteredByManufacturer.map(discFilteredByManufacturer => {
-                                            return  <>
-                                                <option key={`disc--${discFilteredByManufacturer.id}`} value={discFilteredByManufacturer.id}>{discFilteredByManufacturer.name}</option>
-                                            </>
-                                            })
-                            }
-                    </select>
-                </div>
-            </fieldset>}
-            {/* used conditional to only display field if the disc object's manufacturerId is not zero or an empty array, meaning it should only display once a manufacturer is selected */}
-            {disc.manufacturerId !== 0 && disc.manufacturerId !== "" && <fieldset>
-                <div className="form-group">
-                    <label htmlFor="plastic">Plastic: </label>
-                    <select
-                        value={disc.plasticId}
-                        required
-                        className="form-control"
-                        id="discFormControl"
-                        onChange={
-                            (event) => {
-                                const copy = {...disc}
-                                copy.plasticId = event.target.value
-                                update(copy)
-                            }
-                        }>
-                            <option value="">Select plastic...</option>
-                            {
-                            plasticsFilteredByManufacturer.map(plasticFilteredByManufacturer => {
-                                            return  <>
-                                                <option key={`plastic--${plasticFilteredByManufacturer.id}`} value={plasticFilteredByManufacturer.id}>{plasticFilteredByManufacturer.name}</option>
-                                            </>
-                                            })
-                            }
-                    </select>
-                </div>
-            </fieldset>}
-            <fieldset>
-                <div className="form-group">
-                    <label htmlFor="weight">Weight(g):</label>
-                    <input
-                        required
-                        type="number"
-                        className="form-control"
-                        id="discFormControl"
-                        placeholder="Enter disc weight.."
-                        value={disc.weight}
-                        onChange={
-                            (event) => {
-                                const copy = {...disc}
-                                copy.weight = event.target.value
-                                update(copy)
-                            }
-                        } />
-                </div>
-            </fieldset>
-            <fieldset>
-                <div className="form-group">
-                    <label htmlFor="discColor"> Disc Color:</label>
-                    <input
-                        required
-                        type="color"
-                        className="form-control"
-                        id="discFormControl"
-                        placeholder="Choose disc color.."
-                        value={disc.discColor}
-                        onChange={
-                            (event) => {
-                                const copy = {...disc}
-                                copy.discColor = event.target.value
-                                update(copy)
-                            }
-                        } />
-                </div>
-            </fieldset>
-            <fieldset>
-                <div className="form-group">
-                    <label htmlFor="discColor"> Stamp or Secondary Color:</label>
-                    <input
-                        required
-                        type="color"
-                        className="form-control"
-                        id="discFormControl"
-                        placeholder="Choose disc color.."
-                        value={disc.stampColor}
-                        onChange={
-                            (event) => {
-                                const copy = {...disc}
-                                copy.stampColor = event.target.value
-                                update(copy)
-                            }
-                        } />
-                </div>
-            </fieldset>
-            <button
-                onClick={(clickEvent) => handleAddDiscButtonClick(clickEvent)}
-                className="btn btn-info">
-                Add Disc
-            </button>
-            {/* added a second button 'Cancel' that navigates back to /myBag (BagList) in cases user doesn't want to add a new disc once accessing the form */}
-            <button
-                onClick={() => navigate("/mybag")}
-                className="btn btn-secondary">
-            Cancel</button>
-        </form>
+            </form>
+        </article>
     )
 }

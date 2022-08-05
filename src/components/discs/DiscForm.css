@@ -2,10 +2,18 @@
     padding: 1rem;
     margin: 1rem;
     border-radius: 15px;
+    width: fit-content;
+}
+
+.discFormContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
 
 .btn {
-    margin-right: 0.5rem;
+    margin-left: 0.5rem;
+    width: 10rem;
 }
 
 .btn-info {
@@ -15,5 +23,26 @@
 }
 
 #discFormControl {
-    width: 250px;
+    /* width: 250px; */
+    width: 30rem;
 }
+
+.buttonRow {
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* .discFormRow {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin: 0 4rem;
+}
+
+
+.buttonRow {
+    display: flex;
+    justify-content: center;
+    margin: 0 12rem;
+} */
